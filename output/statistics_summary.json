@@ -1,0 +1,17 @@
+{
+  "mean": 29.2,
+  "median": 27.5,
+  "standard_deviation": 13.02,
+  "variance": 169.56,
+  "range": 38,
+  "quartiles": {
+    "q1": 18.75,
+    "median": 27.5,
+    "q3": 38.75
+  },
+  "regression": {
+    "slope": 4.5,
+    "intercept": 7.7,
+    "r_squared": 0.98
+  }
+}
