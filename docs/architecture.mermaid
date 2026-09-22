@@ -1,0 +1,33 @@
+```mermaid
+flowchart TD
+    User([User / CLI / Web UI]) -->|1. Goal Prompt| Agent[Agent Core Execution Engine]
+    
+    subgraph Agent Core Framework
+        Agent --> Planner[Dynamic Goal Planner & Decomposer]
+        Agent --> Memory[Agent Working Memory & State Tracker]
+        Agent --> SelfCorrect[Self-Correction & Reflection Engine]
+    end
+
+    Planner -->|2. Structured Step Plan| ToolReg[Tool Registry]
+
+    subgraph Tool Orchestration Engine (4 Tools)
+        ToolReg --> Tool1[Web Search Tool]
+        ToolReg --> Tool2[Web Page Fetcher]
+        ToolReg --> Tool3[Code Executor Sandbox]
+        ToolReg --> Tool4[File Reader & Writer]
+    end
+
+    Tool1 -->|Observation| Agent
+    Tool2 -->|Observation| Agent
+    Tool3 -->|Observation| Agent
+    Tool4 -->|Observation| Agent
+
+    Tool1 -- Tool Error / Timeout --> SelfCorrect
+    Tool2 -- HTTP 403 / Error --> SelfCorrect
+    Tool3 -- Code Exception --> SelfCorrect
+    
+    SelfCorrect -->|3. Reflection & Recovery Plan| Planner
+
+    Agent -->|4. Final Outputs| OutJSON[final_report.json]
+    Agent -->|4. Final Outputs| OutMD[final_report.md]
+```
